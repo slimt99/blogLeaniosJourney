@@ -34,5 +34,21 @@ RSpec.feature "Articles", type: :feature do
       expect(Article.last.status).to eq("public")
       expect(Article.last.published_on_Leanios).to be true
     end
+    it 'prevents article creation when title doesnt exist' do
+      visit 'articles/new'
+
+      within("#article-form") do
+        fill_in 'article[body]', with: 'this is a testing article'
+        select 'public', from: 'article[status]'
+        check 'article[published_on_Leanios]'
+
+        click_on 'Create Article'
+         expect(page).to have_text("Title can't be blank")
+
+      end
+
+    end
+
   end
+
 end
