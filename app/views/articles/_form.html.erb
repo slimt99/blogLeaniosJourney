@@ -1,0 +1,40 @@
+<body class="bg-blue-200"></body>
+<%= form_with model: article, local:true , html: { id: "article-form" } do |form| %>
+  <div class="flex flex-col items-center min-h-screen my-auto">
+    <div class="input-field">
+      <%= form.label :title , class: "block text-gray-700 font-medium mb-2" %><br>
+      <%= form.text_field :title,class: "shadow appearance-none border border-black rounded w-fit py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+      <% article.errors.full_messages_for(:title).each do |message| %>
+        <div><%= message %></div>
+      <% end %>
+    </div>
+
+    <div class="input-field">
+      <%= form.label :body,class:"block text-gray-700 font-medium mb-2" %><br>
+      <%= form.text_area :body, class: "shadow appearance-none border border-black rounded w-fit py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %><br>
+      <% article.errors.full_messages_for(:body).each do |message| %>
+        <div><%= message %></div>
+      <% end %>
+    </div>
+    <div class="input-field">
+      <%= form.label :picture, class:"block text-gray-700 font-medium mb-2" %>
+      <%= form.file_field :picture%>
+    </div>
+
+    <div class="input-field">
+      <% article.errors.full_messages_for(:user_id).each do |message| %>
+        <div><%= message %></div>
+      <% end %>
+    </div>
+    <div>
+      <%= form.label :status ,  class:"block text-gray-700 font-medium mb-2" %><br>
+      <%= form.select :status, ['public', 'private', 'archived'], selected: 'public',class: "form-select h-10 px-4 py-2 rounded-md text-sm bg-white border border-gray-400 focus:outline-none focus:shadow-outline"%>
+    </div>
+
+    <div class="field">
+      <%= form.check_box :published_on_Leanios, id: 'article_published_on_Leanios' %>
+      <%= form.label :published_on_Leanios %>
+    </div>
+    <%= form.submit "Create Article", class:"block text-gray-700 font-medium mb-2 bg-black py-2 px-4 rounded-full w-fit hover:bg-gray-700 hover:text-white" %>
+  </div>
+<% end %>       

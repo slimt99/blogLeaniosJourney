@@ -1,0 +1,17 @@
+<% unless comment.archived? %>
+  <p>
+    <strong>Commenter:</strong>
+    <%= comment.commenter %>
+  </p>
+
+  <p>
+    <strong>Comment:</strong>
+    <%= comment.body %>
+  </p>
+
+  <p>
+    <%= link_to "Destroy Comment", [comment.article, comment],class:"block text-gray-700 font-medium mb-2 bg-black py-2 px-4 rounded-full w-fit hover:bg-gray-700 hover:text-white",method: :delete, data: {
+                  confirm: "Are you sure?"
+                } %>
+  </p>
+<% end %>

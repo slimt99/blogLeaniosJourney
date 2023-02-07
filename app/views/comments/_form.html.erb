@@ -1,0 +1,18 @@
+<%= form_with model: [ @article, @article.comments.build ] do |form| %>
+  <p>
+    <%= form.label :commenter, class: "block text-gray-700 font-medium mb-2" %><br>
+    <%= form.text_field :commenter, class: "shadow appearance-none border border-black rounded w-fit py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+  </p>
+  <p>
+    <%= form.label :body , class:"block text-gray-700 font-medium mb-2" %><br>
+    <%= form.text_area :body, class: "shadow appearance-none border border-black rounded w-fit py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+  </p>
+  <p>
+  <%= form.label :status, class: "block text-gray-700 font-medium mb-2" %><br>
+  <%= form.select :status, ['public', 'private', 'archived'], selected: 'public' %>
+</p>
+ <p>
+    <%= form.submit "Create Comment", class:"block text-gray-700 font-medium mb-2 bg-black py-2 px-4 rounded-full w-fit hover:bg-gray-700 hover:text-white" %>
+  </p>
+<% end %>
+

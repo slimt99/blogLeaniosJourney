@@ -1,0 +1,33 @@
+<body class="bg-blue-200"></body>
+<div class="flex flex-col items-center min-h-screen my-auto">
+<h2 class="text-2xl font-bold">Sign up</h2>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name) , class: "bg-white p-6 rounded-lg") do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource,class: "text-red-500 text-sm mb-4"%>
+
+
+  <div class="mb-4">
+    <%= f.label :email, class: "block text-gray-700 font-medium mb-2"%><br />
+    <%= f.email_field :email, class: "shadow appearance-none border border-black rounded w-fit py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline", autofocus: true, autocomplete: "email" %>
+  </div>
+
+  <div class="mb-4">
+    <%= f.label :password, class: "block text-gray-700 font-medium mb-2"%>
+    <% if @minimum_password_length %>
+    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <% end %><br />
+    <%= f.password_field :password, autocomplete: "new-password", class: "shadow appearance-none border border-black rounded w-fit py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+  </div>
+
+  <div class="mb-4">
+    <%= f.label :password_confirmation, class:"block text-gray-700 font-medium mb-2" %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "shadow appearance-none border border-black rounded w-fit py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"%>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Sign up", class:"block text-gray-700 font-medium mb-2 bg-black py-2 px-4 rounded-full w-fit hover:bg-gray-700 hover:text-white" %>
+  </div>
+<% end %>
+
+<%= render "devise/shared/links"%>
+</div>

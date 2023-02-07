@@ -1,0 +1,34 @@
+<h1 class="text-3xl font-bold text-center">
+  <%= @article.title %>
+</h1>
+
+<p class="py-4 text-lg text-justify">
+  <%= @article.body %>
+</p>
+
+<% if @article.picture.present? %>
+<div class="h-fit w-fit flex justify-center items-center">
+  <%= image_tag(@article.picture, class: "w-1/2") %>
+</div>
+<% end %>
+
+<ul>
+  <li><%= link_to "Edit", edit_article_path(@article), class:"font-medium text-indigo-600 py-2 px-4 rounded-full hover:text-indigo-800" %></li>
+  <li><%= link_to "Destroy", article_path(@article), class:"font-medium text-indigo-600 py-2 px-4 rounded-full hover:text-indigo-800" ,method: :delete, data:{
+                  confirm: "Are you sure?"
+                  } %></li> 
+</ul>
+
+<div class="bg-white p-6 rounded-lg">
+<h2 class="text-lg font-medium mb-3">Comments</h2>
+</div>
+<div class="shadow appearance-none border border-black rounded w-fit py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+<input type="text" placeholder="Entrez votre texte ici">
+</div>
+
+<%= render @article.comments %>
+
+<div class="bg-white p-6 rounded-lg">
+<h2 class="text-lg font-medium mb-3">Add a comment:</h2>
+</div>
+<%= render 'comments/form' %>
