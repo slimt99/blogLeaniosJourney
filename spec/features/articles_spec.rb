@@ -49,6 +49,34 @@ RSpec.feature "Articles", type: :feature do
 
     end
 
+    it 'prevents article creation when body doesnt exist' do
+      visit 'articles/new'
+
+      within("#article-form") do
+        fill_in 'article[title]', with: 'test one'
+        select 'public', from: 'article[status]'
+        check 'article[published_on_Leanios]'
+
+        click_on 'Create Article'
+         expect(page).to have_text("Body can't be blank")
+      end
+
+    end
+    it 'prevents article creation when body respect the minimun number characters' do
+      visit 'articles/new'
+
+      within("#article-form") do
+        fill_in 'article[title]', with: 'test one'
+        fill_in 'article[body]', with: 'hey !'
+        select 'public', from: 'article[status]'
+        check 'article[published_on_Leanios]'
+
+        click_on 'Create Article'
+         expect(page).to have_text("Body is too short (minimum is 10 characters)")
+      end
+
+    end
+
   end
 
 end
