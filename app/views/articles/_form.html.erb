@@ -1,5 +1,9 @@
 <body class="bg-blue-200"></body>
 <%= form_with model: article, local:true , html: { id: "article-form" } do |form| %>
+  <% article.errors.full_messages.each do |message| %>
+    <div><%= message %></div>
+  <% end %>
+  <%=  %>
   <div class="flex flex-col items-center min-h-screen my-auto">
     <div class="input-field">
       <%= form.label :title , class: "block text-gray-700 font-medium mb-2" %><br>

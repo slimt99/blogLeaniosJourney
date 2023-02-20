@@ -1,6 +1,7 @@
 class ArticlesController < ApplicationController
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
 
+
   def index
     @articles = Article.all
   end
@@ -30,7 +31,7 @@ class ArticlesController < ApplicationController
     @article = Article.find(params[:id])
     
     if @article.update(article_params)
-      redirect_to @article
+      redirect_to
     else
       render 'edit'
     end
